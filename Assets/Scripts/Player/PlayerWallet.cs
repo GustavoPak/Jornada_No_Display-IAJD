@@ -5,6 +5,7 @@ public class PlayerWallet : MonoBehaviour
     public int dinheiro = 0;
     public AudioSource audioSource;
     public AudioClip somGanharDinheiro;
+    public AudioClip somGastarDinheiro;
 
     public void AdicionarDinheiro(int quantidade)
     {
@@ -20,6 +21,7 @@ public class PlayerWallet : MonoBehaviour
         if (dinheiro >= quantidade)
         {
             dinheiro -= quantidade;
+            audioSource.PlayOneShot(somGastarDinheiro);
             return true;
         }
 
