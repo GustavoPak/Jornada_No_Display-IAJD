@@ -854,8 +854,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Jornada_No_Display
-  metroPackageVersion: 
+  metroPackageName: JornadaNoDisplay
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -863,7 +863,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Jornada_No_Display
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Jornada_No_Display
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
