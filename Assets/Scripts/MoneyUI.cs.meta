@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5253aee2d0694ba40b5bec20b4e63981
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerWallet: {instanceID: 0}
+  - moneyText: {instanceID: 0}
+  - EarnMoney: {fileID: 8300000, guid: 86f70fdb7ab3c8341a7bbb3ceb5f8f18, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

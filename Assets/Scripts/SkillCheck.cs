@@ -14,6 +14,10 @@ public class SkillCheck : MonoBehaviour
     private bool ativo = false;
     private float direcao = 1f;
 
+    public AudioSource audioSource;
+    public AudioClip somSucesso;
+    public AudioClip somFalha;
+
     private MotherboardRepair reparoAtual;
 
     void Start()
@@ -84,10 +88,14 @@ public class SkillCheck : MonoBehaviour
 
         if (acertou)
         {
+            audioSource.PlayOneShot(somSucesso);
+
             reparoAtual.AcertouSkillCheck();
         }
         else
         {
+            audioSource.PlayOneShot(somFalha);
+
             reparoAtual.ErrouSkillCheck();
         }
     }

@@ -6,6 +6,9 @@ public class MotherboardRepair : MonoBehaviour
 {
     public SkillCheck skillCheck;
 
+    public PlayerWallet playerWallet;
+    public int recompensa = 100;
+
     public float progresso = 0f;
     public float progressoMaximo = 100f;
 
@@ -89,6 +92,8 @@ public class MotherboardRepair : MonoBehaviour
         skillCheck.Fechar();
 
         playerController.enabled = true;
+
+        playerWallet.AdicionarDinheiro(recompensa);
 
         Debug.Log("PLACA-MÃE CONSERTADA!");
     }
