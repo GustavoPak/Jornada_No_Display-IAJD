@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc0823fc692a07f59d8d37bda3fe296, type: 3}
+  m_Name: Tela
+  m_EditorClassIdentifier: Assembly-CSharp::ProdutoLoja
+  nome: Tela
+  preco: 500
+  prefab: {fileID: 173688038294897239, guid: 58f51b8372b60698188065a99cce00cf, type: 3}
