@@ -12,6 +12,9 @@ public class GerenciadorLoja : MonoBehaviour
     public Transform content;
     public Button botaoProdutoPrefab;
 
+    public PlayerWallet playerWallet;
+    public SistemaPosicionamento posicionamento;
+
     void Start()
     {
         AtualizarCatalogo();
@@ -51,7 +54,12 @@ public class GerenciadorLoja : MonoBehaviour
 
     void SelecionarProduto(ProdutoLoja produto)
     {
-        Debug.Log("Produto selecionado: " + produto.nome);
-        Debug.Log("Preço: " + produto.preco);
+        if (playerWallet.dinheiro < produto.preco)
+        {
+            Debug.Log("Você não tem dinheiro suficiente!");
+            return;
+        }
+
+        posicionamento.IniciarPosicionamento(produto, playerWallet);
     }
 }

@@ -18,6 +18,7 @@ public class ShopUI : MonoBehaviour
     public void AbrirLoja()
     {
         painelLoja.SetActive(true);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -28,7 +29,7 @@ public class ShopUI : MonoBehaviour
     {
         painelLoja.SetActive(false);
 
-        Cursor.visible = true;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
         playerController.enabled = true;

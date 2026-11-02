@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tela
   m_EditorClassIdentifier: Assembly-CSharp::ProdutoLoja
   nome: Tela
-  preco: 500
+  preco: 5
   prefab: {fileID: 173688038294897239, guid: 58f51b8372b60698188065a99cce00cf, type: 3}

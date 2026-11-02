@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArCondicionado
   m_EditorClassIdentifier: Assembly-CSharp::ProdutoLoja
   nome: Ar
-  preco: 1000
+  preco: 10
   prefab: {fileID: 9074497325538175124, guid: e9fee2552ebe94a67bdfc453dbfb2e04, type: 3}

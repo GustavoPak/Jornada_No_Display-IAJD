@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Mesa
   m_EditorClassIdentifier: Assembly-CSharp::ProdutoLoja
   nome: Mesa
-  preco: 80
+  preco: 8
   prefab: {fileID: 2946003130644534228, guid: acce79b8a90970d558fe1ac95d17b03f, type: 3}

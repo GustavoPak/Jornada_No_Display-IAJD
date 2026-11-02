@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cadeira
   m_EditorClassIdentifier: Assembly-CSharp::ProdutoLoja
   nome: Cadeira
-  preco: 40
+  preco: 4
   prefab: {fileID: 7024807031842957452, guid: 9cd16d0df047e67b2b7800002d3513dc, type: 3}
