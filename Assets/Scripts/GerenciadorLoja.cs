@@ -2,18 +2,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
+[Serializable]
+public class ItemLoja
+{
+    public ProdutoLoja produto;
+    public GameObject objetoLaboratorio;
+    public GameObject objetoLaboratorio1;
+    public GameObject objetoLaboratorio2;
+    public GameObject objetoLaboratorio3;
+    public GameObject objetoLaboratorio4;
+
+}
 
 public class GerenciadorLoja : MonoBehaviour
 {
     [Header("Produtos disponíveis")]
-    public ProdutoLoja[] produtos;
+    public ItemLoja[] itens;
 
     [Header("Interface da loja")]
     public Transform content;
     public Button botaoProdutoPrefab;
 
+    [Header("Dinheiro do jogador")]
     public PlayerWallet playerWallet;
-    public SistemaPosicionamento posicionamento;
 
     void Start()
     {
@@ -22,44 +35,65 @@ public class GerenciadorLoja : MonoBehaviour
 
     void AtualizarCatalogo()
     {
-        // Limpa os botões anteriores
         foreach (Transform filho in content)
         {
             Destroy(filho.gameObject);
         }
 
-        // Cria um botão para cada produto
-        foreach (ProdutoLoja produto in produtos)
+        foreach (ItemLoja item in itens)
         {
-            if (produto == null) continue;
+            if (item == null || item.produto == null) continue;
 
-            Button novoBotao = Instantiate(
-                botaoProdutoPrefab,
-                content
-            );
+            Button novoBotao = Instantiate(botaoProdutoPrefab, content);
 
             TMP_Text texto = novoBotao.GetComponentInChildren<TMP_Text>();
 
             if (texto != null)
             {
-                texto.text = produto.nome + " - $" + produto.preco;
+                texto.text = item.produto.nome + " - $" + item.produto.preco;
             }
+
+            ItemLoja itemSelecionado = item;
 
             novoBotao.onClick.AddListener(() =>
             {
-                SelecionarProduto(produto);
+                ComprarProduto(itemSelecionado);
             });
         }
     }
 
-    void SelecionarProduto(ProdutoLoja produto)
+    void ComprarProduto(ItemLoja item)
     {
-        if (playerWallet.dinheiro < produto.preco)
+        if (item.objetoLaboratorio == null)
         {
-            Debug.Log("Você não tem dinheiro suficiente!");
+            Debug.LogError("Objeto do laboratório não configurado!");
             return;
         }
 
-        posicionamento.IniciarPosicionamento(produto, playerWallet);
+        if (item.objetoLaboratorio.activeSelf)
+        {
+            Debug.Log("Este objeto já está ativo!");
+            return;
+        }
+
+        if (playerWallet == null)
+        {
+            Debug.LogError("PlayerWallet não configurado!");
+            return;
+        }
+
+        if (playerWallet.GastarDinheiro(item.produto.preco))
+        {
+            item.objetoLaboratorio.SetActive(true);
+            item.objetoLaboratorio1.SetActive(true);
+            item.objetoLaboratorio2.SetActive(true);
+            item.objetoLaboratorio3.SetActive(true);
+            item.objetoLaboratorio4.SetActive(true);
+            Debug.Log("Compra realizada: " + item.produto.nome);
+        }
+        else
+        {
+            Debug.Log("Dinheiro insuficiente!");
+        }
     }
 }

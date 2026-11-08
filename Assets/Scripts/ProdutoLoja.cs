@@ -6,5 +6,4 @@ public class ProdutoLoja : ScriptableObject
 {
     public string nome;
     public int preco;
-    public GameObject prefab;
 }
