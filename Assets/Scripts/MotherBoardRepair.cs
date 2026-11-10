@@ -20,7 +20,6 @@ public class MotherboardRepair : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("MotherboardRepair iniciou!");
     }
 
     void Update()
@@ -30,7 +29,6 @@ public class MotherboardRepair : MonoBehaviour
 
         if (playerPerto && !reparando && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            Debug.Log("E apertado perto da placa-mãe");
             ComecarReparo();
         }
     }
@@ -41,15 +39,12 @@ public class MotherboardRepair : MonoBehaviour
 
         playerController.enabled = false;
 
-        Debug.Log("Começou o reparo");
-
         skillCheck.IniciarSkillCheck(this);
     }
 
     public void AcertouSkillCheck()
     {
         progresso += 20f;
-        Debug.Log("Acertou! Progresso: " + progresso);
 
         VerificarProgresso();
     }
@@ -60,8 +55,6 @@ public class MotherboardRepair : MonoBehaviour
 
         if (progresso < 0)
             progresso = 0;
-
-        Debug.Log("Errou! Progresso: " + progresso);
 
         ContinuarReparo();
     }
@@ -94,17 +87,13 @@ public class MotherboardRepair : MonoBehaviour
         playerController.enabled = true;
 
         playerWallet.AdicionarDinheiro(recompensa);
-
-        Debug.Log("PLACA-MÃE CONSERTADA!");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Algo entrou no trigger: " + other.name);
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entrou no trigger da placa-mãe");
             playerPerto = true;
         }
     }
@@ -113,7 +102,6 @@ public class MotherboardRepair : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player saiu do trigger");
             playerPerto = false;
         }
     }

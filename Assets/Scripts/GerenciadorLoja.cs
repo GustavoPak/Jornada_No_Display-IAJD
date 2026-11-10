@@ -88,7 +88,7 @@ public class GerenciadorLoja : MonoBehaviour
             item.objetoLaboratorio1.SetActive(true);
             item.objetoLaboratorio2.SetActive(true);
             item.objetoLaboratorio3.SetActive(true);
-            item.objetoLaboratorio4.SetActive(true);
+            //item.objetoLaboratorio4.SetActive(true);
             Debug.Log("Compra realizada: " + item.produto.nome);
         }
         else
