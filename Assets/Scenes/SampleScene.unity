@@ -448,7 +448,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 595663599d826a89d9b8ba9e418992c8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.096
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1893798593}
   m_HandleRect: {fileID: 1893798592}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2600,50 +2600,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1770521710}
   m_SourcePrefab: {fileID: 100100000, guid: 12e8939a0aefae347a376665616580f8, type: 3}
---- !u!1 &1351221596
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1351221598}
-  - component: {fileID: 1351221597}
-  m_Layer: 0
-  m_Name: SistemaPosicionamento
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1351221597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351221596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301b6d631ca55977089f2ff63a2fd20b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SistemaPosicionamento
---- !u!4 &1351221598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351221596}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.69459, y: 7.45302, z: -8.23675}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352124686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1207646711747016536, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
@@ -4417,4 +4373,3 @@ SceneRoots:
   - {fileID: 1329207977}
   - {fileID: 918499907}
   - {fileID: 1857840223}
-  - {fileID: 1351221598}

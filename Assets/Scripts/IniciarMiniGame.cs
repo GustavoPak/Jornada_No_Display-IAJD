@@ -43,7 +43,6 @@ public class IniciarMinigame : MonoBehaviour
         {
             if (!avisoExibido)
             {
-                UnityEngine.Debug.Log("Pressione E para jogar!");
                 avisoExibido = true;
             }
 
