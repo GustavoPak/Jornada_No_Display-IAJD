@@ -1,0 +1,65 @@
+# PAC-CODE — migração inicial para Unity
+
+Esta pasta contém uma reconstrução em C# do minigame recebido no projeto Godot.
+O jogo é desenhado pela própria Unity (IMGUI), portanto não precisa do executável Godot,
+de sprites, de prefabs ou de assets externos.
+
+## Conteúdo
+
+- `Scripts/PACCodeGame.cs`: labirinto, robô, dois bugs, IA de perseguição, coleta,
+  vidas, pontuação, vitória/derrota e reinício.
+- `Scripts/IniciarMinigameUnity.cs`: inicia o minigame ao pressionar E perto do
+  computador ativo e fecha com ESC.
+
+## Instalação no projeto Unity
+
+1. Copie a pasta `PAC_CODE_Unity_Migracao` para fora do ZIP.
+2. Copie a pasta `Scripts` para `Assets/MiniGames/PAC_CODE/Scripts`
+   (crie as pastas caso ainda não existam).
+3. Aguarde a Unity compilar.
+4. Na Hierarchy, selecione o objeto de tela/computador que já é ativado pelo
+   sistema de compra. Use o mesmo objeto que atualmente contém `IniciarMinigame`,
+   ou o objeto filho que é ativado/desativado junto com o computador.
+5. Remova/desmarque o script antigo `IniciarMinigame` que abre o executável externo.
+   Não deixe os dois scripts ativos no mesmo computador.
+6. Adicione `IniciarMinigameUnity`.
+7. Arraste `PlayerArmature` para o campo `Jogador`.
+8. Deixe `Distancia Interacao` em 10 inicialmente (foi o valor que funcionou
+   no teste do projeto atual). Ajuste depois conforme a escala do laboratório.
+9. Teste em Play: compre/ative o computador, aproxime-se e pressione E.
+10. O PAC-CODE ocupa a tela. Use WASD ou setas. ESC retorna ao laboratório.
+    R reinicia; após vitória/derrota, R ou Enter reinicia a partida.
+
+## Requisitos
+
+- Projeto Unity com o pacote Input System instalado e ativo.
+- O script usa `UnityEngine.InputSystem`.
+- A cena do laboratório deve estar em execução. O minigame é criado em runtime,
+  não exige criar uma cena Unity separada.
+
+## Regras reproduzidas do projeto Godot fornecido
+
+- Tabuleiro 15 x 11 e mapa de paredes/corredores original.
+- Robô começa em (1,1).
+- Bugs começam em (11,3) e (7,9).
+- CPU em (13,1), RAM em (1,7), SSD em (13,9).
+- 3 vidas; colisão consome uma vida e reposiciona o robô no início.
+- Invulnerabilidade inicial de 1,5 s e de 2 s após colisão.
+- 100 pontos por componente e bônus de 300 ao coletar os três.
+- Bugs movem-se a cada 0,28 s e tentam perseguir o robô em 70% das decisões.
+- Vitória ao coletar os três componentes; derrota ao perder as três vidas.
+- WASD/setas para mover; R/Enter reinicia após o resultado; ESC retorna.
+
+## Observações importantes
+
+- Esta é uma migração funcional inicial da lógica e do visual desenhado por código,
+  não uma conversão automática de cenas Godot para cenas Unity. O visual foi
+  reconstruído com formas e cores próximas às do original.
+- O `hub.tscn`/`hub.gd` do ZIP eram uma tela demonstrativa, não parte do jogo
+  principal Jornada no Display. A integração real aqui é feita pelo componente
+  `IniciarMinigameUnity`.
+- O resultado da partida é escrito na Console, mas não altera ainda XP, loja ou
+  progressão da história, conforme a decisão de manter a primeira integração simples.
+- Mantenha a pasta/exportação Godot como backup até testar a versão Unity.
+- A versão atual desenha a experiência em tela cheia dentro da janela do jogo Unity;
+  não renderiza o minigame dentro da superfície física do monitor 3D.

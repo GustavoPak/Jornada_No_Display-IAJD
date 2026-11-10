@@ -280,7 +280,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7518213709644664000, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
   m_PrefabInstance: {fileID: 1473199809}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &137843024
+--- !u!114 &137843023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,11 +289,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 137843022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e3d53c3c5ad591eea47f02cea67678f, type: 3}
+  m_Script: {fileID: 11500000, guid: e4e07d9f23e600893ac1eda4dfd230d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IniciarMinigame
+  m_EditorClassIdentifier: Assembly-CSharp::IniciarMinigameUnity
   jogador: {fileID: 651040662}
   distanciaInteracao: 10
+  minigamesDisponiveis: 0000000001000000
 --- !u!1 &190917987
 GameObject:
   m_ObjectHideFlags: 0
@@ -3246,6 +3247,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1693025396}
+    - targetCorrespondingSourceObject: {fileID: -4403544536768301438, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1787322648}
     - targetCorrespondingSourceObject: {fileID: -1207646711747016536, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1352124690}
@@ -3254,7 +3258,7 @@ PrefabInstance:
       addedObject: {fileID: 75990132}
     - targetCorrespondingSourceObject: {fileID: 7518213709644664000, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 137843024}
+      addedObject: {fileID: 137843023}
   m_SourcePrefab: {fileID: 100100000, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
 --- !u!1 &1619251881
 GameObject:
@@ -3927,6 +3931,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -4403544536768301438, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
   m_PrefabInstance: {fileID: 1473199809}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1787322648
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787322644}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020163596, y: 0.025135886, z: 0.18172273}
+  m_Center: {x: -0.0000000010547847, y: -1.7732746e-10, z: -0.08086137}
 --- !u!1 &1828700107
 GameObject:
   m_ObjectHideFlags: 0
