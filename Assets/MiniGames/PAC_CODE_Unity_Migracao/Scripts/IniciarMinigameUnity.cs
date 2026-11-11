@@ -23,7 +23,6 @@ public class IniciarMinigameUnity : MonoBehaviour
     private bool menuAberto;
 
     private PACCodeGame jogo;
-    private PanicoNoLaboratorioGame panicoJogo;
 
     private GameObject objetoJogo;
 
@@ -36,7 +35,7 @@ public class IniciarMinigameUnity : MonoBehaviour
         if (Keyboard.current == null)
             return;
 
-        if (jogo != null || panicoJogo != null)
+        if (jogo != null)
             return;
 
         if (menuAberto)
@@ -88,20 +87,24 @@ public class IniciarMinigameUnity : MonoBehaviour
         Debug.Log("PAC-CODE iniciado dentro da Unity.");
     }
 
-    private void IniciarPanicoNoLaboratorio()
+    // ---------------- Pânico no Display (versão completa) ----------------
+    // Fecha o menu, abre o minijogo e, quando o jogador sair dele,
+    // reabre este menu (igual ao PAC-CODE). A recompensa em dinheiro
+    // é entregue pelo próprio PanicoNoDisplayLauncher.
+    private void IniciarPanicoNoDisplay()
     {
-        // O minigame utiliza Time.deltaTime.
-        // Por isso, precisamos descongelar o tempo.
-        Time.timeScale = 1f;
+        FecharMenu();
+        PanicoNoDisplay.PanicoNoDisplayLauncher.OnClosed -= AoFecharPanicoNoDisplay;
+        PanicoNoDisplay.PanicoNoDisplayLauncher.OnClosed += AoFecharPanicoNoDisplay;
+        Debug.Log("Pânico no Display (versão completa) iniciado.");
+        PanicoNoDisplay.PanicoNoDisplayLauncher.Launch();
+    }
 
-        objetoJogo = new GameObject(
-            "Panico no Laboratorio - Minigame Unity"
-        );
-
-        panicoJogo = objetoJogo.AddComponent<PanicoNoLaboratorioGame>();
-        panicoJogo.ExitRequested += VoltarAoMenu;
-
-        Debug.Log("Pânico no Laboratório iniciado dentro da Unity.");
+    private void AoFecharPanicoNoDisplay(int dinheiroGanho)
+    {
+        PanicoNoDisplay.PanicoNoDisplayLauncher.OnClosed -= AoFecharPanicoNoDisplay;
+        if (this != null && isActiveAndEnabled)
+            AbrirMenu();
     }
 
     private void VoltarAoMenu()
@@ -112,7 +115,6 @@ public class IniciarMinigameUnity : MonoBehaviour
         objetoJogo = null;
 
         jogo = null;
-        panicoJogo = null;
 
         // Congela novamente o jogo enquanto o seletor está aberto.
         Time.timeScale = 0f;
@@ -139,7 +141,7 @@ public class IniciarMinigameUnity : MonoBehaviour
 
     private void OnGUI()
     {
-        if (!menuAberto || jogo != null || panicoJogo != null)
+        if (!menuAberto || jogo != null)
             return;
 
         float largura = 520;
@@ -181,7 +183,8 @@ public class IniciarMinigameUnity : MonoBehaviour
                         break;
 
                     case MinigameDisponivel.PANICO_NO_LABORATORIO:
-                        IniciarPanicoNoLaboratorio();
+                        // Versão completa (Assets/MiniGames/PanicoNoDisplay)
+                        IniciarPanicoNoDisplay();
                         break;
                 }
             }
@@ -211,7 +214,6 @@ public class IniciarMinigameUnity : MonoBehaviour
         objetoJogo = null;
 
         jogo = null;
-        panicoJogo = null;
 
         if (menuAberto)
         {
