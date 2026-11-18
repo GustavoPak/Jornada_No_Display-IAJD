@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dc0823fc692a07f59d8d37bda3fe296, type: 3}
-  m_Name: Tela
+  m_Name: Computador02
   m_EditorClassIdentifier: Assembly-CSharp::ProdutoLoja
-  nome: Tela
-  preco: 5
-  prefab: {fileID: 173688038294897239, guid: 58f51b8372b60698188065a99cce00cf, type: 3}
+  nome: Computador
+  preco: 30
