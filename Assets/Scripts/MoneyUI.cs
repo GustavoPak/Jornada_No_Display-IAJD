@@ -9,6 +9,6 @@ public class MoneyUI : MonoBehaviour
 
     void Update()
     {
-        moneyText.text = "$ " + playerWallet.dinheiro;
+        moneyText.text = " " + playerWallet.dinheiro;
     }
 }
