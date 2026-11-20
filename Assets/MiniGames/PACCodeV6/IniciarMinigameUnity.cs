@@ -84,7 +84,7 @@ public class IniciarMinigameUnity : MonoBehaviour
         jogo = objetoJogo.AddComponent<PACCodeGame>();
         jogo.ExitRequested += VoltarAoMenu;
 
-        Debug.Log("PAC-CODE iniciado dentro da Unity.");
+        Debug.Log("PAC-CODE V6 iniciado dentro da Unity.");
     }
 
     // ---------------- Pânico no Display (versão completa) ----------------
@@ -116,7 +116,7 @@ public class IniciarMinigameUnity : MonoBehaviour
 
         jogo = null;
 
-        // Congela novamente o jogo enquanto o seletor está aberto.
+        // Mantém o laboratório pausado enquanto o seletor está aberto.
         Time.timeScale = 0f;
 
         menuAberto = true;
@@ -212,8 +212,8 @@ public class IniciarMinigameUnity : MonoBehaviour
             Destroy(objetoJogo);
 
         objetoJogo = null;
-
         jogo = null;
+        PanicoNoDisplay.PanicoNoDisplayLauncher.OnClosed -= AoFecharPanicoNoDisplay;
 
         if (menuAberto)
         {
