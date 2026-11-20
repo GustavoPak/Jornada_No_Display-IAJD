@@ -7,6 +7,7 @@ public class MotherboardRepair : MonoBehaviour
     public SkillCheck skillCheck;
 
     public PlayerWallet playerWallet;
+    [SerializeField] private GameObject avisoTarefa;
     public int recompensa = 100;
 
     public float progresso = 0f;
@@ -87,6 +88,9 @@ public class MotherboardRepair : MonoBehaviour
         playerController.enabled = true;
 
         playerWallet.AdicionarDinheiro(recompensa);
+
+        if (avisoTarefa != null)
+            avisoTarefa.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
