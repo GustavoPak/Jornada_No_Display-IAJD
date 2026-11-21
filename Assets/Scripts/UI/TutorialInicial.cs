@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,6 +19,11 @@ public sealed class TutorialInicial : MonoBehaviour
 
     private readonly List<Behaviour> pausados = new();
     private GameObject janela;
+    [SerializeField] private Sprite retratoMentora;
+    private RectTransform painelAnimado;
+    private CanvasGroup grupoAnimado;
+    private Button botaoOk;
+    [SerializeField] private AudioClip somConfirmacao;
     private float tempoAnterior;
     private CursorLockMode bloqueioAnterior;
     private bool cursorVisivelAntes;
@@ -44,28 +50,46 @@ public sealed class TutorialInicial : MonoBehaviour
         fundo.rectTransform.offsetMin = Vector2.zero;
         fundo.rectTransform.offsetMax = Vector2.zero;
 
-        var painel = CriarImagem("Painel", fundo.transform, new Color32(22, 34, 49, 255));
-        painel.rectTransform.sizeDelta = new Vector2(560, 300);
+        var painel = CriarImagem("Painel", fundo.transform, new Color32(15, 33, 42, 255));
+        painel.rectTransform.sizeDelta = new Vector2(712, 284);
+        painelAnimado = painel.rectTransform;
+        grupoAnimado = fundo.gameObject.AddComponent<CanvasGroup>();
+
+        var menta = new Color32(105, 244, 192, 255);
+        var faixa = Decorar("Fundo da mentora", painel.transform, -250, 0, 212, 284,
+            new Color32(36, 66, 70, 255));
+        var retrato = Decorar("Mentora", faixa.transform, 0, 0, 212, 260, Color.white);
+        retrato.sprite = retratoMentora;
+        retrato.preserveAspect = true;
+        retrato.enabled = retratoMentora != null;
+        Decorar("Linha superior", painel.transform, 0, 140, 712, 4, menta);
 
         var fonte = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        CriarTexto("Título", painel.transform, fonte, titulo, 28, FontStyle.Bold,
-            new Vector2(496, 64), 95);
-        CriarTexto("Instruções", painel.transform, fonte, instrucoes, 22, FontStyle.Normal,
-            new Vector2(496, 120), 0);
+        var cabecalho = CriarTexto("Título", painel.transform, fonte, titulo, 28, FontStyle.Bold,
+            new Vector2(442, 72), 78);
+        cabecalho.rectTransform.anchoredPosition = new Vector2(106, 78);
+        cabecalho.alignment = TextAnchor.MiddleLeft;
+        var corpo = CriarTexto("Instruções", painel.transform, fonte, instrucoes, 19, FontStyle.Normal,
+            new Vector2(442, 94), -5);
+        corpo.rectTransform.anchoredPosition = new Vector2(106, -5);
+        corpo.alignment = TextAnchor.MiddleLeft;
+        corpo.color = new Color32(214, 231, 231, 255);
 
         var imagemBotao = CriarImagem("OK", painel.transform, Color.white);
-        imagemBotao.rectTransform.sizeDelta = new Vector2(156, 52);
-        imagemBotao.rectTransform.anchoredPosition = new Vector2(0, -101);
+        imagemBotao.rectTransform.sizeDelta = new Vector2(122, 42);
+        imagemBotao.rectTransform.anchoredPosition = new Vector2(266, -94);
 
         var botao = imagemBotao.gameObject.AddComponent<Button>();
         botao.targetGraphic = imagemBotao;
         var cores = botao.colors;
-        cores.normalColor = new Color32(165, 232, 181, 255);
+        cores.normalColor = menta;
         cores.highlightedColor = new Color32(204, 255, 214, 255);
         cores.pressedColor = new Color32(121, 198, 144, 255);
-        cores.selectedColor = cores.normalColor;
+        cores.selectedColor = new Color32(151, 255, 211, 255);
         botao.colors = cores;
         botao.onClick.AddListener(Confirmar);
+        botaoOk = botao;
+        botaoOk.interactable = false;
         CriarTexto("Rótulo", botao.transform, fonte, "OK", 23, FontStyle.Bold,
             imagemBotao.rectTransform.sizeDelta, 0).color = new Color32(13, 42, 28, 255);
 
@@ -92,12 +116,54 @@ public sealed class TutorialInicial : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        EventSystem.current?.SetSelectedGameObject(botao.gameObject);
+        AplicarAnimacao(0f);
+        StartCoroutine(Abrir());
+    }
+
+    private IEnumerator Abrir()
+    {
+        yield return Animar(0f, 1f, 0.28f);
+        botaoOk.interactable = true;
+        EventSystem.current?.SetSelectedGameObject(botaoOk.gameObject);
     }
 
     private void Confirmar()
     {
-        gameObject.SetActive(false);
+        if (!botaoOk.interactable)
+            return;
+
+        botaoOk.interactable = false;
+        if (somConfirmacao != null)
+        {
+            var som = gameObject.AddComponent<AudioSource>();
+            som.playOnAwake = false;
+            som.ignoreListenerPause = true;
+            som.spatialBlend = 0f;
+            som.PlayOneShot(somConfirmacao);
+        }
+        StartCoroutine(Fechar());
+    }
+
+    private IEnumerator Fechar()
+    {
+        yield return Animar(1f, 0f, 0.20f);
+        enabled = false;
+    }
+
+    private IEnumerator Animar(float inicio, float fim, float duracao)
+    {
+        for (float decorrido = 0f; decorrido < duracao;)
+        {
+            yield return null;
+            decorrido += Time.unscaledDeltaTime;
+            AplicarAnimacao(Mathf.SmoothStep(inicio, fim, decorrido / duracao));
+        }
+    }
+
+    private void AplicarAnimacao(float progresso)
+    {
+        painelAnimado.localScale = Vector3.one * Mathf.Lerp(0.72f, 1f, progresso);
+        grupoAnimado.alpha = progresso;
     }
 
     private void OnDisable()
@@ -105,6 +171,7 @@ public sealed class TutorialInicial : MonoBehaviour
         if (janela == null)
             return;
 
+        StopAllCoroutines();
         Destroy(janela);
         janela = null;
 
@@ -125,6 +192,16 @@ public sealed class TutorialInicial : MonoBehaviour
         Time.timeScale = tempoAnterior;
         Cursor.lockState = bloqueioAnterior;
         Cursor.visible = cursorVisivelAntes;
+    }
+
+    private static Image Decorar(string nome, Transform pai, float x, float y,
+        float largura, float altura, Color cor)
+    {
+        var imagem = CriarImagem(nome, pai, cor);
+        imagem.rectTransform.sizeDelta = new Vector2(largura, altura);
+        imagem.rectTransform.anchoredPosition = new Vector2(x, y);
+        imagem.raycastTarget = false;
+        return imagem;
     }
 
     private static Image CriarImagem(string nome, Transform pai, Color cor)
