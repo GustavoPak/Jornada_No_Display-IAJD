@@ -1105,6 +1105,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e07d9f23e600893ac1eda4dfd230d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IniciarMinigameUnity
+--- !u!114 &450917681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450917673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08281a4cf3eb1c14fbad3be0875be28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IniciarMinigameUnity
+  jogador: {fileID: 651040662}
+  distanciaInteracao: 10
+  minigamesDisponiveis: 0000000001000000
 --- !u!1 &545296255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,6 +3390,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2060544202183233635, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 450917677}
+    - targetCorrespondingSourceObject: {fileID: 2060544202183233635, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 450917681}
   m_SourcePrefab: {fileID: 100100000, guid: 4472e0205ae0b0d4693a9cb571c7d1e1, type: 3}
 --- !u!1 &1511906723
 GameObject:
